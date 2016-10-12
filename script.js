@@ -54,38 +54,41 @@ $(document).ready(function() {
 
   function getNeighbors(x, y){
     var numNeighbors = 0;
-    //top left
-    if (cellArray[x-1][y-1].active){
-      numNeighbors++;
-    }
-    //top
-    if (cellArray[x][y-1].active){
-      numNeighbors++;
-    }
-    //top right
-    if (cellArray[x+1][y-1].active){
-      numNeighbors++;
-    }
-    //left
-    if (cellArray[x-1][y].active){
-      numNeighbors++;
-    }
-    //right
-    if (cellArray[x+1][y].active){
-      numNeighbors++;
-    }
-    //bottom left
-    if (cellArray[x-1][y+1].active){
-      numNeighbors++;
-    }
-    //bottom
-    if (cellArray[x][y+1].active){
-      numNeighbors++;
-    }
-    //bottom right
-    if (cellArray[x+1][y+1].active){
-      numNeighbors++;
-    }
+    //handle edges - only executes if neighbors are within array's boundaries
+    // if (x-1 >= 0 && y-1 >= 0 && x < cellArray[x].length && y < cellArray[x][y].length){
+      //top left
+      if (cellArray[x-1][y-1].active){
+        numNeighbors++;
+      }
+      //top
+      if (cellArray[x][y-1].active){
+        numNeighbors++;
+      }
+      //top right
+      if (cellArray[x+1][y-1].active){
+        numNeighbors++;
+      }
+      //left
+      if (cellArray[x-1][y].active){
+        numNeighbors++;
+      }
+      //right
+      if (cellArray[x+1][y].active){
+        numNeighbors++;
+      }
+      //bottom left
+      if (cellArray[x-1][y+1].active){
+        numNeighbors++;
+      }
+      //bottom
+      if (cellArray[x][y+1].active){
+        numNeighbors++;
+      }
+      //bottom right
+      if (cellArray[x+1][y+1].active){
+        numNeighbors++;
+      }
+    // }
     console.log("Cell at (" + x + "," + y + ") has " + numNeighbors + " neighbors");
     return numNeighbors;
   }
@@ -96,49 +99,21 @@ $(document).ready(function() {
     var deadCells = [];
     for (var x = 0; x < cellArray.length; x++){
       for (var y = 0; y < cellArray[x].length; y++){
-        //if a cell is active get number of neighbors stores coordinates in an array of objects
         var numNeighbors = 0;
         if (cellArray[x][y].active){
-        //   //top left
-        //   if (cellArray[x-1][y-1].active){
-        //     numNeighbors++;
+          numNeighbors = getNeighbors(x, y);
+          if (numNeighbors < 2 || numNeighbors > 3){
+            deadCells.push({x: x, y: y});
+          }
+          else if(numNeighbors === 2 || numNeighbors === 3){
+            liveCells.push({x: x, y: y});
+          }
+        }
+        // if (cellArray[x][y].active === false){
+        //   if (numNeighbors === 3){
+        //     liveCells.push({x: x, y: y});
         //   }
-        //   //top
-        //   if (cellArray[x][y-1].active){
-        //     numNeighbors++;
-        //   }
-        //   //top right
-        //   if (cellArray[x+1][y-1].active){
-        //     numNeighbors++;
-        //   }
-        //   //left
-        //   if (cellArray[x-1][y].active){
-        //     numNeighbors++;
-        //   }
-        //   //right
-        //   if (cellArray[x+1][y].active){
-        //     numNeighbors++;
-        //   }
-        //   //bottom left
-        //   if (cellArray[x-1][y+1].active){
-        //     numNeighbors++;
-        //   }
-        //   //bottom
-        //   if (cellArray[x][y+1].active){
-        //     numNeighbors++;
-        //   }
-        //   //bottom right
-        //   if (cellArray[x+1][y+1].active){
-        //     numNeighbors++;
-        //   }
-        //   console.log("Cell at (" + x + "," + y + ") has " + numNeighbors + " neighbors");
         // }
-        if (numNeighbors < 2 || numNeighbors > 3){
-          deadCells.push({x: x, y: y});
-        }
-        else if(numNeighbors === 2 || numNeighbors === 3){
-          liveCells.push({x: x, y: y});
-        }
       }
     }
     for (var i = 0; i < liveCells.length; i++){
