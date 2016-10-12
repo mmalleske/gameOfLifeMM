@@ -7,16 +7,17 @@ h1{
 .cell{
   height: 30px;
   width: 30px;
-  border: solid black 3px;
+  border: solid black 2px;
   padding: 0;
   background-color: yellow;
+  cursor: pointer;
 }
 .cell button{
   height: 100%;
   width: 100%;
   background-color: yellow;
   border-style: none;
-  cursor: pointer;
+
   margin: 0;
   padding: 0;
 }
