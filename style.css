@@ -1,0 +1,22 @@
+body{
+
+}
+h1{
+  color: green;
+}
+.cell{
+  height: 30px;
+  width: 30px;
+  border: solid black 3px;
+  padding: 0;
+  background-color: yellow;
+}
+.cell button{
+  height: 100%;
+  width: 100%;
+  background-color: yellow;
+  border-style: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
