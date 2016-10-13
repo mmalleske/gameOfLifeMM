@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var cellArray = [];
   var generation = 1;
+  $('#gen-counter').html("Generation: " + generation);
   function Cell(x, y, active){
     this.x = x;
     this.y = y;
@@ -22,7 +23,7 @@ $(document).ready(function() {
     //populate cells
     for (var j = 0; j < cellArray.length; j++){
       for (var k = 0; k < cellArray[j].length; k++){
-        $('#row-'+ j).append('<td class="cell" id="'+k+'"></td>');
+        $('#row-'+ j).append('<td class="cell" id="'+k+'"><img src="images/tadpole.gif" class="amoeba"></td>');
       }
     }
     $('.cell').click(function(event) {
@@ -32,23 +33,33 @@ $(document).ready(function() {
       cellArray[xCoordinate][yCoordinate].active = !cellArray[xCoordinate][yCoordinate].active;
       if (cellArray[xCoordinate][yCoordinate].active){
         $( this ).css( "background-color", "green");
+        $( this ).children('.amoeba').show(200);
       }
       else{
         $( this ).css( "background-color", "yellow");
+        $( this ).children('.amoeba').hide(200);
       }
-      //console.log(xCoordinate, yCoordinate);
     });
   }
   $('#nextgen').click(function(event) {
     nextGeneration();
   });
+  $('#start').click(function(event) {
+    var myVar = setInterval(nextGeneration, 1000);
+      $('#stop').click(function(event) {
+        clearInterval(myVar);
+      });
+  });
+
 
   function activateCell(x, y){
     if (cellArray[x][y].active === true){
       $('#row-' + y + '> #' + x).css( "background-color", "green");
+      $('#row-' + y + '> #' + x).children('.amoeba').show(200);
     }
     else if (cellArray[x][y].active === false){
       $('#row-' + y + '> #' + x).css( "background-color", "yellow");
+      $('#row-' + y + '> #' + x).children('.amoeba').hide(200);
     }
   }
 
@@ -115,6 +126,8 @@ $(document).ready(function() {
     //iterate through cell array
     var liveCells = [];
     var deadCells = [];
+    generation ++;
+    $('#gen-counter').html("Generation: " + generation);
     for (var x = 0; x < cellArray.length; x++){
       for (var y = 0; y < cellArray[x].length; y++){
         var numNeighbors = 0;
@@ -144,19 +157,14 @@ $(document).ready(function() {
       cellArray[deadCells[i].x][deadCells[i].y].active = false;
       activateCell(deadCells[i].x, deadCells[i].y);
     }
-
-    //if cell has two or three neighbors store in array of next gen cells
-    //***if dead cell has three neighbors store in array of next gen cells
-    //if cell has more than three neighbors store in array of cells to die
-    //if cell has one or no neighbors store in array of cells to die
   }
-//edge case: write a function that checks to see if a neighbor check is out of
-//bounds of the cellArray before querying for neighbors
 
-
-
+  function initializeBoard(){
+    $('.amoeba').hide(0);
+  }
 
   createArray(15,15);
   createTable();
+  initializeBoard();
 
 });

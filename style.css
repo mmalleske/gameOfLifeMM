@@ -7,12 +7,19 @@ h1{
 .cell{
   height: 30px;
   width: 30px;
+  max-height: 30px;
+  max-width: 30px;
   border: solid black 2px;
   padding: 0;
   background-color: yellow;
   cursor: pointer;
+
 }
-.cell button{
+.amoeba{
+  height: 80%;
+  width: 80%;
+}
+/*.cell button{
   height: 100%;
   width: 100%;
   background-color: yellow;
@@ -20,4 +27,4 @@ h1{
 
   margin: 0;
   padding: 0;
-}
+}*/
