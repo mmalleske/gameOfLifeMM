@@ -22,7 +22,7 @@ $(document).ready(function() {
     //populate cells
     for (var j = 0; j < cellArray.length; j++){
       for (var k = 0; k < cellArray[j].length; k++){
-        $('#row-'+ j).append('<td class="cell" id="'+k+'">'+k+'</td>');
+        $('#row-'+ j).append('<td class="cell" id="'+k+'"></td>');
       }
     }
     $('.cell').click(function(event) {
@@ -127,12 +127,12 @@ $(document).ready(function() {
             liveCells.push({x: x, y: y});
           }
         }
-        // else if (cellArray[x][y].active === false){
-        //   numNeighbors = getNeighbors(x, y);
-        //   if (numNeighbors === 3){
-        //     liveCells.push({x: x, y: y});
-        //   }
-        // }
+        else if (cellArray[x][y].active === false){
+          numNeighbors = getNeighbors(x, y);
+          if (numNeighbors === 3){
+            liveCells.push({x: x, y: y});
+          }
+        }
       }
     }
     for (var i = 0; i < liveCells.length; i++){
@@ -156,7 +156,7 @@ $(document).ready(function() {
 
 
 
-  createArray(20,20);
+  createArray(15,15);
   createTable();
 
 });
