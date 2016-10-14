@@ -1,30 +1,57 @@
 body{
-
+  font-family: 'Share Tech Mono', monospace;
+  background-image: url('images/spacebg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  /*font-family: 'Chathura', sans-serif;*/
 }
 h1{
-  color: green;
+  /*color: white;*/
+  margin: auto;
+  text-align: center;
+  background-color: rgba(255,255,255,0.3);
+  border-top: solid 1px white;
+  border-bottom: solid 1px white;
+}
+table {
+    border-collapse:collapse;
+    background-image: url('images/planet.png');
+    background-position: center;
+    background-size: cover;
+    margin: auto;
+}
+.control-panel{
+  margin: auto;
+  text-align: center;
+  padding: 1% 0;
+}
+.control-panel > *{
+  text-align: center;
+  display: inline;
+}
+button{
+  cursor: pointer;
+}
+p{
+  /*color: white;*/
 }
 .cell{
   height: 30px;
   width: 30px;
   max-height: 30px;
   max-width: 30px;
-  border: solid black 2px;
+  border: solid white 1px;
   padding: 0;
-  background-color: yellow;
+  margin: 0;
+  background-color: rgba(255,255,255,0.3);
   cursor: pointer;
-
 }
-.amoeba{
+.cell:hover{
+  background-color: rgba(255,255,255,0.6);
+}
+img{
   height: 80%;
   width: 80%;
 }
-/*.cell button{
-  height: 100%;
-  width: 100%;
-  background-color: yellow;
-  border-style: none;
 
-  margin: 0;
-  padding: 0;
-}*/

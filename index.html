@@ -5,22 +5,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>MM - Game of Life</title>
   <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css?family=Chathura|Share+Tech+Mono" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>Game of Life</h1>
+    <h1>The Game of Life - Evolution Edition</h1>
   </header>
-
-  <table class="cell-grid">
-    <thead>
-      <button id="nextgen" type="button">Next Generation</button>
+  <div class="control-panel"><button id="nextgen" type="button">Next Generation</button>
       <button id="start" type="button">Start</button>
       <button id="stop" type="button" >Stop</button>
+      <button id="reset" type="button" >Reset</button>
       <p id="gen-counter"></p>
+  </div>
+  <table class="cell-grid">
+    <thead>
     </thead>
     <tbody id="grid-body">
     </tbody>
   </table>
+  <ul>The Rules:
+    <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+    <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+    <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+    <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
+    <li>**Every 10 generations, the lifeforms will evolve into a new species.</li>
+  </ul>
+  <ul>Controls:
+    <li>Click a cell to populate. Cells can be populated at anytime.</li>
+    <li>Click "Next Generation" to step through generations individually.</li>
+    <li>Click "Start" to automatically advance through generations.</li>
+    <li>Click "Stop" to stop automatic advancement through generations.</li>
+    <li>Click "Reset" to clear the board and go back to the first generation.</li>
+  </ul>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="script.js"></script>

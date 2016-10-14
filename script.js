@@ -23,7 +23,7 @@ $(document).ready(function() {
     //populate cells
     for (var j = 0; j < cellArray.length; j++){
       for (var k = 0; k < cellArray[j].length; k++){
-        $('#row-'+ j).append('<td class="cell" id="'+k+'"><img src="images/tadpole.gif" class="amoeba"></td>');
+        $('#row-'+ j).append('<td class="cell" id="'+k+'"><img src="images/amoeba.gif" class="amoeba"><img src="images/tadpole.gif" class="tadpole"><img src="images/fish.gif" class="fish"><img src="images/chameleon.gif" class="chameleon"><img src="images/dino.gif" class="dino"></td>');
       }
     }
     $('.cell').click(function(event) {
@@ -32,34 +32,70 @@ $(document).ready(function() {
       yCoordinate = parseInt(yCoordinate[1], 10);
       cellArray[xCoordinate][yCoordinate].active = !cellArray[xCoordinate][yCoordinate].active;
       if (cellArray[xCoordinate][yCoordinate].active){
-        $( this ).css( "background-color", "green");
-        $( this ).children('.amoeba').show(200);
+        if (generation <= 10){
+          $( this ).children('.amoeba').show(200);
+        }
+        else if (generation > 10 && generation <= 20){
+          $( this ).children('img').hide(0);
+          $( this ).children('.tadpole').show(200);
+        }
+        else if (generation > 20 && generation <= 30){
+          $( this ).children('img').hide(0);
+          $( this ).children('.fish').show(200);
+        }
+        else if (generation > 30 && generation <= 40){
+          $( this ).children('img').hide(0);
+          $( this ).children('.chameleon').show(200);
+        }
+        else{
+          $( this ).children('img').hide(0);
+          $( this ).children('.dino').show(200);
+        }
       }
       else{
-        $( this ).css( "background-color", "yellow");
-        $( this ).children('.amoeba').hide(200);
+        $( this ).children('img').hide(0);
       }
     });
   }
   $('#nextgen').click(function(event) {
     nextGeneration();
   });
+  var myVar;
   $('#start').click(function(event) {
-    var myVar = setInterval(nextGeneration, 1000);
-      $('#stop').click(function(event) {
-        clearInterval(myVar);
-      });
+    myVar = setInterval(nextGeneration, 1000);
   });
-
+  $('#stop').click(function(event) {
+    clearInterval(myVar);
+  });
+  $('#reset').click(function(event) {
+    clearInterval(myVar);
+    initializeBoard();
+  });
 
   function activateCell(x, y){
     if (cellArray[x][y].active === true){
-      $('#row-' + y + '> #' + x).css( "background-color", "green");
-      $('#row-' + y + '> #' + x).children('.amoeba').show(200);
+      if (generation <= 10){
+        $('#row-' + y + '> #' + x).children('.amoeba').show(200);
+      }
+      else if (generation > 10 && generation <= 20){
+        $('#row-' + y + '> #' + x).children('img').hide(0);
+        $('#row-' + y + '> #' + x).children('.tadpole').show(200);
+      }
+      else if (generation > 20 && generation <= 30){
+        $('#row-' + y + '> #' + x).children('img').hide(0);
+        $('#row-' + y + '> #' + x).children('.fish').show(200);
+      }
+      else if (generation > 30 && generation <= 40){
+        $('#row-' + y + '> #' + x).children('img').hide(0);
+        $('#row-' + y + '> #' + x).children('.chameleon').show(200);
+      }
+      else{
+        $('#row-' + y + '> #' + x).children('img').hide(0);
+        $('#row-' + y + '> #' + x).children('.dino').show(200);
+      }
     }
     else if (cellArray[x][y].active === false){
-      $('#row-' + y + '> #' + x).css( "background-color", "yellow");
-      $('#row-' + y + '> #' + x).children('.amoeba').hide(200);
+      $('#row-' + y + '> #' + x).children('img').hide(0);
     }
   }
 
@@ -160,7 +196,14 @@ $(document).ready(function() {
   }
 
   function initializeBoard(){
-    $('.amoeba').hide(0);
+    generation = 1;
+    $('#gen-counter').html("Generation: " + generation);
+    $('img').hide(0);
+    for (var x = 0; x < cellArray.length; x++){
+      for (var y = 0; y < cellArray[x].length; y++){
+        cellArray[x][y].active = false;
+      }
+    }
   }
 
   createArray(15,15);
